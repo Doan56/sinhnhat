@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const bigBangCanvas = document.getElementById("bigBangCanvas");
     const bigBangCtx = bigBangCanvas.getContext("2d");
 
-    // Đặt kích thước canvas Big Bang
     bigBangCanvas.width = window.innerWidth;
     bigBangCanvas.height = window.innerHeight;
 
@@ -17,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const centerX = bigBangCanvas.width / 2;
         const centerY = bigBangCanvas.height / 2;
 
-        // Tạo danh sách các hạt
+
         for (let i = 0; i < numParticles; i++) {
             particles.push({
                 x: centerX,
@@ -30,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
-        // Vẽ hiệu ứng Big Bang
+
         function animateBigBang() {
             bigBangCtx.clearRect(0, 0, bigBangCanvas.width, bigBangCanvas.height);
 
@@ -52,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (particles.length > 0) {
                 requestAnimationFrame(animateBigBang);
             } else {
-                // Hiệu ứng Big Bang kết thúc
+        
                 callback();
             }
         }
@@ -60,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
         animateBigBang();
     }
 
-    // Chuyển màu hex sang RGB
     function hexToRgb(hex) {
         const bigint = parseInt(hex.slice(1), 16);
         const r = (bigint >> 16) & 255;
@@ -69,31 +67,29 @@ document.addEventListener("DOMContentLoaded", () => {
         return `${r},${g},${b}`;
     }
 
-    // Xử lý khi bấm nút
     if (btnFireworks) {
         btnFireworks.addEventListener("click", () => {
-            // Ẩn nút bấm
+    
             btnFireworks.classList.add("hidden");
 
-            // Hiệu ứng Big Bang
+    
             bigBangCanvas.classList.remove("hidden");
             createBigBangEffect(() => {
-                // Kết thúc Big Bang, phát video
+        
                 bigBangCanvas.classList.add("hidden");
                 birthdayVideo.classList.remove("hidden");
 
-                // Phát video
+        
                 birthdayVideo.play();
 
-                // Khi video kết thúc, hiện ảnh và chữ
+        
                 birthdayVideo.onended = () => {
                     birthdayVideo.classList.add("hidden");
 
-                    // Hiện ảnh với hiệu ứng phóng to
+            
                     birthdayImage.classList.remove("hidden");
                     birthdayImage.classList.add("visible");
 
-                    // Hiện chữ "Chúc Mừng Sinh Nhật"
                     birthdayText.classList.remove("hidden");
                     birthdayText.classList.add("visible");
                 };
