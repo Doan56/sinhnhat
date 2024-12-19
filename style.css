@@ -1,0 +1,120 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #000000;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    z-index: 2; /* Đảm bảo nút và nội dung nằm trên canvas */
+}
+
+#btnFireworks {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity 0.5s;
+    z-index: 2; /* Đảm bảo nút nằm trên canvas */
+}
+
+#btnFireworks:hover {
+    background-color: #ff1493;
+}
+
+#btnFireworks.hidden {
+    opacity: 0; /* Làm nút biến mất */
+    pointer-events: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out; /* Hiệu ứng mờ dần */
+}
+
+.fade-in.visible {
+    opacity: 1;
+}
+
+#birthdayImage {
+    width: 300px;
+    margin: 20px auto;
+    animation: spin 3s infinite;
+    z-index: 2;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#birthdayText {
+    font-size: 36px;
+    color: #ff4500;
+    margin-top: 20px;
+    z-index: 2;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Đặt canvas ở dưới */
+    pointer-events: none; /* Không cản trở nút bấm */
+}
+/* Đặt canvas hiệu ứng Big Bang */
+#bigBangCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3; /* Trên cùng khi Big Bang */
+    pointer-events: none;
+}
+/* Định dạng video */
+#birthdayVideo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4;
+    background: black;
+}
+
+/* Hiệu ứng xuất hiện và lớn dần */
+@keyframes fadeInGrow {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#birthdayImage.visible {
+    animation: fadeInGrow 3s ease-in-out forwards; /* Thời gian hiệu ứng: 3 giây */
+}
+
+.hidden {
+    display: none;
+}
